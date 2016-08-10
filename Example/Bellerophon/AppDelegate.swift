@@ -76,8 +76,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
         // MAKE API CALL
         assert(killSwitchURL != nil, "Kill switch URL has to be defined.")
 
-        Alamofire.request(.GET, killSwitchURL!, parameters: nil, encoding: .JSON, headers: nil).responseObject {
-            (response: Response<💩, NSError>) in
+        let _ = Alamofire
+            .request(.GET, killSwitchURL!, parameters: nil, encoding: .json, headers: nil)
+            .responseObject { (response: Response<💩, NSError>) in
                 completion(status: response.result.value, error: response.result.error)
         }
     }
@@ -86,6 +87,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
         let alert = UIAlertView(title: "Force Update", message: "Force update message is received!", delegate: self, cancelButtonTitle: "Got it")
         alert.show()
     }
-
+    
 }
 
